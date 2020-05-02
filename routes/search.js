@@ -5,7 +5,6 @@ const cheerio = require('cheerio');
 const express = require('express');
 
 const pino = require('pino')
-  a
 
 const logger = pino({
   level: process.env.LOG_LEVEL || 'info',

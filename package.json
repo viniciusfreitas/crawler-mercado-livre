@@ -5,9 +5,13 @@
   "main": "server.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint *.js routes/*.js",
-    "prepush": "npm run lint",
     "devStart": "nodemon server.js",
     "log": "nodemon server.js > app.log 2>&1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint"
+    }
   },
   "repository": {
     "type": "git",
