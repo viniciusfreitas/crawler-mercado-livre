@@ -4,7 +4,7 @@
   "description": "Crawler em Node.js para pesquisar produtos no Mercado Livre",
   "main": "server.js",
   "scripts": {
-    "lint": "./node_modules/.bin/eslint *.js routes/*",
+    "lint": "./node_modules/.bin/eslint *.js routes/*.js",
     "prepush": "npm run lint",
     "devStart": "nodemon server.js",
     "log": "nodemon server.js > app.log 2>&1"
