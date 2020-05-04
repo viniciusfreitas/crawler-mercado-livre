@@ -8,9 +8,13 @@ Node.js
 
 ## Running the tests
 
+```
 npm run test
+```
+or
+```
 npm run test:coverage
-
+```
 
 ## Built With
 
