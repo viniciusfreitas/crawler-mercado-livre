@@ -2,24 +2,15 @@
 
 Crawler em Node.js para capturar informações de produtos na página do Mercado Livre
 
-## Getting Started
-
-
 ### Prerequisites
 
-Necessário um servidor Node.js
+Node.js
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+npm run test
+npm run test:coverage
 
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
