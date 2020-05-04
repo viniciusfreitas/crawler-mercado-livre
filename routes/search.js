@@ -1,7 +1,6 @@
 /* eslint-disable require-jsdoc */
-const request = require('request');
+let request = require('request');
 const cheerio = require('cheerio');
-// const fs = require('fs')
 const express = require('express');
 
 const pino = require('pino');
@@ -20,25 +19,29 @@ const logger = pino({
 const router = express.Router();
 
 router.post('/', async (req, response) => {
+
   const search = req.body.search;
   const limit = req.body.limit;
   const url = `https://lista.mercadolivre.com.br/${search}`;
 
-  logger.info(`Searched term: ${search}`);
+  logger.info(`Searched word: ${search}`);
 
   request(url, (err, res, body) => {
     if (err) {
-      // logError(err)
       logger.error(err);
-      // eslint-disable-next-line max-len
-      response.status(400).json({'erro': err, 'message': 'Ocorreu um erro ao ler a página.'});
+
+      response.status(400).json({
+        'erro': err,
+        'message': 'Ocorreu um erro ao ler a página.',
+      });
       return;
     }
-    // logSearch(search, null)
+
     const result = readPage(body, limit);
     logger.info('Calling res.send');
     response.status(200).json(result);
   });
+  response.status(200).json([{'msg': 'ok'}]);
 });
 
 function readPage(body, limit) {
@@ -85,28 +88,5 @@ function checkValues(item) {
   }
   return item;
 }
-
-// function getTime() {
-//     let current_datetime = new Date()
-// eslint-disable-next-line max-len
-//     return current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate() + " " + current_datetime.getHours() + ":" + current_datetime.getMinutes() + ":" + current_datetime.getSeconds()
-// }
-
-// function logSearch(name) {
-//     let now = getTime()
-// eslint-disable-next-line max-len
-//     fs.appendFile('search_log.txt', `${now} - Produto pesquisado: "${name}"; \n`, (err) => {
-//         if(err) throw err
-//     })
-// }
-
-// function logError(error) {
-//     console.error(error)
-//     let now = getTime()
-//     fs.appendFile('error_log.txt', `${now} - ${error}; \n`, (err) => {
-//         if(err) throw err
-//         console.error(err)
-//     })
-// }
 
 module.exports = router;
